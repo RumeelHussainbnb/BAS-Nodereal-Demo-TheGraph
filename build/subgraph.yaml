@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: WBNB
@@ -20,7 +20,7 @@ dataSources:
         - Withdrawal
       abis:
         - name: WBNB
-          file: ./abis/WBNB.json
+          file: WBNB/abis/WBNB.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -30,4 +30,4 @@ dataSources:
           handler: handleDeposit
         - event: Withdrawal(indexed address,uint256)
           handler: handleWithdrawal
-      file: ./src/mapping.ts
+      file: WBNB/WBNB.wasm
