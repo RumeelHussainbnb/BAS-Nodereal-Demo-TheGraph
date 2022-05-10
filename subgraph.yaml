@@ -1,0 +1,32 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: WBNB
+    network: bsc
+    source:
+      address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      abi: WBNB
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+        - Deposit
+        - Withdrawal
+      abis:
+        - name: WBNB
+          file: ./abis/WBNB.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdrawal(indexed address,uint256)
+          handler: handleWithdrawal
+      file: ./src/mapping.ts
